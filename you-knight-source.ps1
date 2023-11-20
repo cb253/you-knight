@@ -12,22 +12,82 @@ Version 1.0
 Production Began Nov, 2023 
 #>
 
-# Setting up the sleep timer function for message pacing
-function sleepTimer {
+# Setting up the sleep timer function for message pacing in seconds
+function sleepTimerS {
     param($seconds)
     Start-Sleep -Seconds ($seconds)
 }
+# Setting up the sleep timer function for message pacing in milliseconds
+function sleepTimerM {
+    param($seconds)
+    Start-Sleep -Milliseconds ($seconds)
+}
 
+function write {
+    param($message)
+    Write-Host ($message)
+}
 # This is supposed to hide the file path and make things look a little prettier in the console, needs work
 function prompt { 
     $p = Split-Path -leaf -path (Get-Location)  
     \"$p> \" 
 }
+# creates a blank spacer
+function space {
+    write ""
+}
+#function for creating fast scrolling text
+function writeFastScroll {
+    param($Text)
+    ForEach ($Character in $Text.ToCharArray()) {
+        Write-Host -NoNewLine  $Character
+        sleepTimerM 50
+    }
+}
+
+
+function intro {
+    write "   
+ _______      _                                                   
+(_______)    | |                                                  
+ _         __| |  ___    ____     ____  _____  ____   _____   ___ 
+| |       / _  | / _ \  / _  |   / _  |(____ ||    \ | ___ | /___)
+| |_____ ( (_| || |_| |( (_| |  ( (_| |/ ___ || | | || ____||___ |
+ \______) \____| \___/  \___ |   \___ |\_____||_|_|_||_____)(___/ 
+                       (_____|  (_____|                           
+ ______                                                           
+(_____ \                                      _                   
+ _____) )  ____  _____   ___  _____  ____   _| |_   ___           
+|  ____/  / ___)| ___ | /___)| ___ ||  _ \ (_   _) /___)          
+| |      | |    | ____||___ || ____|| | | |  | |_ |___ | _  _  _  
+|_|      |_|    |_____)(___/ |_____)|_| |_|   \__)(___/ (_)(_)(_)
+"
+    for($i = 1; $i -le 5; $i++ ) {
+        sleepTimerM 500
+        write ""
+    }
+
+    write "
+---      ---   --------   ----    ----      ----    ---- ----    ---- --------  ------------ ----    ---- ------------ 
+ ***    ***   **********  ****    ****      ****   ****  *****   **** ********  ************ ****    **** ************ 
+  ---  ---   ----    ---- ----    ----      ----  ----   ------  ----   ----    ----         ----    ---- ------------ 
+   ******    ***      *** ****    ****      *********    ************   ****    ****  ****** ************     ****     
+    ----     ---      --- ----    ----      ---------    ------------   ----    ----  ------ ------------     ----     
+    ****     ****    **** ************      ****  ****   ****  ******   ****    ****    **** ****    ****     ****     
+    ----      ----------  ------------      ----   ----  ----   ----- --------  ------------ ----    ----     ----     
+    ****       ********   ************      ****    **** ****    **** ********  ************ ****    ****     ****     
+    "
+}
+
+writeFastScroll "Perhaps this was the only way"
 
 
 
-Write-Host "This is a test message"
-sleepTimer 4
-Write-Host "This is a test message"
-sleepTimer 2
-Clear-Host
+
+
+
+
+
+
+
+
