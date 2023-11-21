@@ -44,6 +44,14 @@ function writeFastScroll {
         sleepTimerM 50
     }
 }
+#function for creating fast scrolling read host text
+function readFastScroll {
+    param($Text)
+    ForEach ($Character in $Text.ToCharArray()) {
+        Read-Host -NoNewLine  $Character
+        sleepTimerM 50
+    }
+}
 
 
 
@@ -102,28 +110,57 @@ function intro {
     sleepTimerS 2
     writeFastScroll `n'"There may not be a kingdom much longer"'
 #>
-    Read-Host "Begin Your Journey? (Y/N)"
-        if (Read-Host -eq "Y") {
-
-        } 
 }
 
-function journeyStart {
-    write "The journey has begun"
+function startGame {
+    $playerAnswer1 = Read-Host -Prompt "Will you take on this task? (Y / N)" 
+    if ($playerAnswer1 -eq "Y" -or $playerAnswer1 -eq "y") {
+        writeFastScroll "Good luck, and safe travels, o brave one"
+        sleepTimerS 3
+        Clear-Host
+        part1
+    } elseif ($playerAnswer1 -eq "N" -or $playerAnswer1 -eq "n") {
+        writeFastScroll "The journey, im afraid, is not optional. STEEL YOURSELF, AND SET OUT!!`nLEST YOU WISH FOR A FOOT IN THE ASS!!"
+        sleepTimerS 3
+        Clear-Host
+        part1
+    } else {
+        writeFastScroll "Listen again to what I ask..."
+        sleepTimerS 1
+        Clear-Host
+        startGame
+    }
+}
+
+function part1 {
+    writeFastScroll "You stop by your quarters to gather you things before heading out`n"
+    sleepTimerS 1
+    writeFastScroll "As an aspiring young knight, you are no stranger to combat. Before embarking on your journey to locate Blargh, you must arm yourself on your journey`n"
+    sleepTimerS 1
+    function weaponChoice1 {
+        writeFastScroll "Which weapon will you choose?"
+        sleepTimerS 1
+        readFastScroll "SWORD(1) ----- WAND(2) ----- FIST(3)"
+        if (readFastScroll -eq 1) {
+
+        } elseif (readFastScroll -eq 2) {
+
+        } elseif (readFastScroll -eq 3) {
+
+        } else {
+            
+        }
+    }
 }
 
 
 
 
+startGame
 
 
 
 
-
-
-
-
-intro
 
 
 
