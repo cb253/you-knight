@@ -28,10 +28,13 @@ function write {
     Write-Host ($message)
 }
 # This is supposed to hide the file path and make things look a little prettier in the console, needs work
+<#
 function prompt { 
     $p = Split-Path -leaf -path (Get-Location)  
     \"$p> \" 
 }
+#>
+
 # creates a blank spacer
 function space {
     write ""
@@ -48,7 +51,7 @@ function writeFastScroll {
 function readFastScroll {
     param($Text)
     ForEach ($Character in $Text.ToCharArray()) {
-        Read-Host -NoNewLine  $Character
+        Read-Host $Character
         sleepTimerM 50
     }
 }
@@ -135,29 +138,30 @@ function startGame {
 function part1 {
     writeFastScroll "You stop by your quarters to gather you things before heading out`n"
     sleepTimerS 1
-    writeFastScroll "As an aspiring young knight, you are no stranger to combat. Before embarking on your journey to locate Blargh, you must arm yourself on your journey`n"
+    writeFastScroll "As an aspiring young knight, you are no stranger to combat. Before embarking on your journey to locate Blargh, you must arm yourself!`n"
     sleepTimerS 1
     function weaponChoice1 {
-        writeFastScroll "Which weapon will you choose?"
+        writeFastScroll "Which weapon will you choose?`n"
         sleepTimerS 1
-        readFastScroll "SWORD(1) ----- WAND(2) ----- FIST(3)"
-        if (readFastScroll -eq 1) {
-
-        } elseif (readFastScroll -eq 2) {
-
-        } elseif (readFastScroll -eq 3) {
-
+        writeFastScroll "SWORD(1) ----- WAND(2) ----- FIST(3"
+        $weapon1 = Read-Host ")`n"
+        $weapon1
+        if ( -eq 1) {
+            writeFastScroll "test1"
+        } elseif (Read-Host -eq 2) {
+            writeFastScroll "test2"
+        } elseif (Read-Hosts -eq 3) {
+            writeFastScroll "test3"
         } else {
             
         }
     }
+    weaponChoice1
 }
 
 
-
-
 startGame
-
+part1
 
 
 
